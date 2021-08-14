@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
+        <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/queries.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet">
+        <title>OmniFood</title>
+        <style>
+
+            /*
+        Orange color: #e67e22
+        */
+        
+        /*----------------------------------------*/
+        /*BASIC SETUP*/
+        /*----------------------------------------*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            background-color: #fff;
+            color: #555;
+            font-family: "Lato","Arial","sans-serif";
+            font-size: 20px;
+            font-weight: 300;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        
+        .clearfix {zoom: 1}
+        .clearfix:after {
+            content: ".";
+            clear: both;
+            display: block;
+            height: 0;
+            visibility: hidden;
+        }
+        
+        /*----------------------------------------*/
+        /*REUSABLE COMPONENTS*/
+        /*----------------------------------------*/
+        
+        .row {
+            max-width: 1140px; 
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .box {
+            padding: 1%;
+        }
+        
+        /*-----HEADINGS------*/
+        
+        h1,
+        h2,
+        h3 {
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+        
+        h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 240%;
+            word-spacing: 4px;
+            letter-spacing: 1px;
+        }
+        
+        h2 {
+            font-size: 180%;
+            word-spacing: 2px;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        
+        h3 {
+            font-size: 110%;
+            margin-bottom: 15px;
+        }
+        
+        h2:after {
+            display: block;
+            height: 2px;
+            background-color: #e67e22;
+            content: " ";
+            width: 200px;
+            margin: 0 auto;
+            margin-top: 30px;
+        }
+        
+        /*-----PARAGRAPHS------*/
+        .long-copy {
+            line-height: 145%; /*line spacing*/
+            width: 70%;
+            margin-left: 15%;
+        }
+        
+        .box p {
+            font-size: 90%;
+            line-height: 145%;
+        }
+        
+        /*-----ICONS------*/
+        .icon-big {
+            font-size: 350%;
+            display: block;
+            color: #e67e22;
+            margin-bottom: 10px;
+        }
+        
+        .icon-small {
+            display: inline-block;
+            width: 30px;
+            text-align: center;
+            color: #e67e22;
+            font-size: 120%;
+            margin-right: 10px;
+            /*secrets to align text and icons*/
+            line-height: 120%;
+            vertical-align: middle;
+            margin-top: -5px;
+        }
+        
+        /*-----LINKS------*/
+        a:link,
+        a:visited {
+            color: #e67e22;
+            text-decoration: none;
+            padding-bottom: 1px;
+            border-bottom: 1px solid #e67e22;
+            transition: border-bottom 0.2s, color 0.2s;
+        }
+        
+        a:hover,
+        a:active {
+            color: #555;
+            border-bottom: 1px solid transparent; 
+        }
+        
+        /*-----BUTTONS------*/
+        .btn:link,
+        .btn:visited,
+        input[type=submit] {
+            display: inline-block;
+            padding: 10px 30px;
+            font-weight: 300;
+            text-decoration: none;
+            border-radius: 200px;
+            transition: background-color 0.2s, border 0.2s, color 0.2s;
+        
+        }
+        
+        .btn-full:link,
+        .btn-full:visited,
+        input[type=submit] {
+            background-color: #e67e22;
+            border: 1px solid #e67e22;
+            color: #fff;
+            margin-right: 15px;
+        }
+        
+        .btn-ghost:link,
+        .btn-ghost:visited {
+            border: 1px solid #e67e22;
+            color: #e67e22;
+        }
+        
+        .btn:hover,
+        .btn:active,
+        input[type=submit]:hover,
+        input[type=submit]:active{
+            background-color: #cf6d17;
+        }
+        
+        .btn-full:hover,
+        .btn-full:active,
+        input[type=submit]{
+            border: 1px solid #e67e22;
+        }
+        
+        .btn-ghost:hover,
+        .btn-ghost:active {
+            border: 1px solid #e67e22;
+            color: #fff;
+        }
+        
+        
+        /*----------------------------------------*/
+        /*SIDE-BAR*/
+        /*----------------------------------------*/
+        
+        .open-side-nav{
+            font-size:30px;
+            cursor:pointer; 
+            float: left; 
+            z-index: 1; 
+            color: white; 
+            margin-top: 40px;
+            margin-right: 15px;
+        }
+        
+        .side-nav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        
+        .side-nav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: white;
+            /* color: #818181; */
+            display: block;
+            transition: 0.3s;
+          }
+          
+          .side-nav a:hover {
+            color: #f1f1f1;
+          }
+          
+          .side-nav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: white;
+          }
+        
+        
+        /*----------------------------------------*/
+        /*MODAL*/
+        /*----------------------------------------*/
+        
+        #modal-div{
+            position:absolute; 
+            top:0px; 
+            left:0px;
+            background-color:black; 
+            z-index:8;
+            opacity: 0.8;
+            filter:alpha(opacity=60); 
+            -moz-opacity: 0.8; 
+            overflow:hidden; 
+            display:none;
+        }
+        
+        /*----------------------------------------*/
+        /*HEADER*/
+        /*----------------------------------------*/
+        
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(img/hero.jpg);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            background-attachment: fixed;
+        }
+        
+        .hero-text-box {
+            position: absolute;
+            width: 1140px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        
+        .logo {
+            height: 100px;
+            width: auto;
+            float: left;
+            margin-top: 20px
+        }
+        
+        .main-nav {
+            float: right;
+            list-style: none;
+            margin-top: 55px;
+        }
+        
+        .main-nav li {
+            display: inline-block;
+            margin-left: 40px;
+        }
+        
+        .main-nav li a:link,
+        .main-nav li a:visited{
+            padding: 8px 0;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 90%;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.2s;
+        }
+        
+        .main-nav li a:hover,
+        .main-nav li a:active{
+            border-bottom: 2px solid #e67e22;
+        }
+        
+        /*----------------------------------------*/
+        /*FEATURES*/
+        /*----------------------------------------*/
+        
+        .section-features .long-copy{
+            margin-bottom: 30px;
+        }
+        
+        
+        /*----------------------------------------*/
+        /*MEALS*/
+        /*----------------------------------------*/
+        
+        .section-meals {
+            padding: 0;
+        }
+        
+        .meals-showcase{
+            list-style: none;
+            width: 100%;
+        }
+        
+        .meals-showcase li {
+            display: block;
+            float: left;
+            width: 25%;
+        }
+        
+        .meal-photo {
+            width: 100%;
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        
+        .meal-photo img {
+            opacity: 0.7;
+            width: 100%;
+            height: auto;
+            transform: scale(1.15);
+            transition: transform 0.5s, opacity 0.5s;
+        }
+        
+        .meal-photo img:hover {
+            opacity: 1;
+            transform: scale(1.03);
+        }
+        
+        /*----------------------------------------*/
+        /*HOW IT WORKS*/
+        /*----------------------------------------*/
+        
+        .section-steps {
+            background-color: #f4f4f4;
+        }
+        
+        .steps-box:first-child {
+            text-align: right;
+            padding-right: 3%;
+            margin-top: 30px;
+        }
+        
+        .steps-box:last-child {
+            padding-left: 3%;
+            margin-top: 70px;
+        }
+        
+        .app-screen {
+            width: 40%;
+        }
+        
+        .works-step {
+            margin-bottom: 50px;
+        }
+        
+        .works-step:last-of-type {
+            margin-bottom: 80px;
+        }
+        
+        .works-step div {
+            color: #e67e22;
+            border: 2px solid #e67e22;
+            display: inline-block;
+            border-radius: 50%;
+            height: 55px;
+            width: 55px;
+            text-align: center;
+            padding: 5px;
+            float: left;
+            font-size: 150%;
+            margin-right: 35px;
+        }
+        
+        .btn-app:link,
+        .btn-app:visited {
+            border: 0;
+        }
+        
+        .btn-app img {
+            height: 50px;
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        /*----------------------------------------*/
+        /*CITIES*/
+        /*----------------------------------------*/
+        
+        .box img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        
+        .city-feature {
+            margin-bottom: 5px;
+        }
+        
+        
+        /*----------------------------------------*/
+        /*TESTIMONIALS*/
+        /*----------------------------------------*/
+        
+        .section-testimonials {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)),url(img/back-customers.jpg);
+            background-size: cover;
+            color: #fff;
+            background-attachment: fixed;
+        }
+        
+        blockquote {
+            padding: 2%;
+            font-style: italic;
+            line-height: 145%;
+            position: relative;
+            margin-top: 40px;
+        }
+        
+        cite {
+            font-size: 90%;
+            margin-top: 25px;
+            display: block;
+        }
+        
+        blockquote:before {
+            content: "\201C";
+            font-size: 500%;
+            display: block;
+            position: absolute;
+            top: -5px;
+            left: -3px;
+        }
+        
+        cite img {
+            height: 45px;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        
+        /*----------------------------------------*/
+        /*PLANS*/
+        /*----------------------------------------*/
+        
+        .section-plans {
+            background-color: #f4f4f4;
+        }
+        
+        .plan-box {
+            background-color: #fff;
+            border-radius: 5px;
+            width: 90%;
+            margin-left: 5%;
+            box-shadow: 0 2px 2px #e6e6e6;
+        }
+        
+        .plan-box div {
+            padding: 15px;
+            border-bottom: 1px solid #dedede;
+        }
+        
+        .plan-box div:first-child {
+            background-color: #e3e3e3;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px
+        }
+        
+        .plan-box div:last-child {
+            text-align: center;
+            border: none;
+        }
+        
+        .plan-price {
+            font-size: 300%;
+            margin-bottom: 10px;
+            font-weight: 200;
+            color: #e67e22
+        }
+        
+        .plan-price span {
+            font-size: 30%;
+            font-weight: 300;
+        }
+        
+        .plan-price-meal {
+            font-size: 80%;
+        }
+        
+        .plan-box ul {
+            list-style: none;
+        }
+        
+        .plan-box ul li {
+            padding: 5px 0;
+        }
+        
+        
+        /*----------------------------------------*/
+        /*CONTACT*/
+        /*----------------------------------------*/
+        
+        .contact-form {
+            width: 60%;
+            margin: 0 auto;
+        }
+        
+        input[type=text],
+        input[type=email],
+        select,
+        textarea {
+            width: 100%;
+            padding: 7px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        
+        textarea {
+            height: 100px;
+        }
+        
+        input[type=checkbox] {
+            margin: 10px 5px 10px 0;
+        }
+        
+        *:focus {
+            outline: none;
+        }
+        
+        
+        /*----------------------------------------*/
+        /*FOOTER*/
+        /*----------------------------------------*/
+        
+        footer {
+            background-color: #464646;
+            padding: 50px;
+            font-size: 80%;
+        }
+        
+        .footer-nav {
+            list-style: none;
+            float: left;
+        }
+        
+        .social-links {
+            list-style: none;
+            float: right;
+        }
+        
+        .footer-nav li,
+        .social-links li{
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        .footer-nav li:last-child,
+        .social-links li:last-child {
+            margin: 0;
+        }
+        
+        .footer-nav li a:link,
+        .footer-nav li a:visited,
+        .social-links li a:link,
+        .social-links li a:visited{
+            text-decoration: none;
+            border: 0;
+            color: #8b8b8b;
+            transition: color 0.2s;
+        }
+        
+        .footer-nav li a:hover,
+        .footer-nav li a:active {
+            color: #ddd;
+        }
+        
+        .social-links li a:link,
+        .social-links li a:visited {
+            font-size: 150%;
+        }
+        
+        .ion-social-facebook,
+        .ion-social-twitter,
+        .ion-social-googleplus,
+        .ion-social-instagram {
+            transition: color 0.2s;
+        }
+        
+        .ion-social-facebook:hover {
+            color: #3b5998;
+        }
+        
+        .ion-social-twitter:hover {
+            color: #55acee;
+        }
+        
+        .ion-social-googleplus:hover {
+            color: #dd4b39;
+        }
+        
+        .ion-social-instagram:hover {
+            color: #e95950;
+        }
+        
+        footer p {
+            color: #ddd;
+            text-align: center;
+            margin-top: 30px;
+        } 
+        /* big tablets to 1200px (width smaller than 1140px row)*/
+@media only screen and (min-width: 767px) {
+
+.open-side-nav { display: none;}
+}
+
+
+@media only screen and (max-width: 1200px) {
+.hero-text-box {
+width: 100%;
+    padding: 0 2%;
+}
+
+.row { padding: 0 2%; }
+} 
+
+
+/* small tablets to big tablets from 767px-1023px */
+@media only screen and (max-width: 1023px) {
+body { font-size: 18px; }
+section { padding: 60px 0; }
+
+.long-copy {
+width: 80%;
+margin-left: 10%;
+}
+
+.steps-box { margin-top: 10px; }
+.steps-box:last-child { margin-top: 10px; }
+.works-steps { margin-bottom: 40px; }
+.works-steps:last-of-type { margin-bottom: 80px; }
+
+.app-screen { width: 50%; }
+
+.icon-small { 
+    width: 17px;
+    margin-right: 5px;
+}
+.city-feature { font-size: 90%; }
+
+.plan-box {
+    width: 100%;
+    margin-left: 0%;
+}
+
+.plan-price { font-size: 250%; }
+.contact-form { width: 80%; }
+} 
+
+
+/* small phones to small tablets from 481-767px */
+@media only screen and (max-width: 767px) {
+body { font-size: 16px; }
+section { padding: 30px 0; }
+
+.row,
+.hero-text-box { padding: 0 4%; }
+.col { 
+    width: 100%;
+    margin: 0% 0 4% 0%;
+}
+.main-nav { display: none;}
+
+h1 { font-size: 180%; }
+h2 { font-size: 150%; }
+
+.long-copy {
+width: 100%;
+margin-left: 0%;
+}
+
+.app-screen { width: 50%; }
+.steps-box:first-child { text-align: center; }
+
+.works-step div {
+
+height: 40px;
+width: 40px;
+padding: 4x;
+margin-right: 15px;
+font-size: 120%;
+}
+
+.works-step { margin-bottom: 20px; }
+.works-step:last-of-type { margin-bottom: 20px; }
+} 
+
+
+/* small phones: from 0-480px */
+@media only screen and (max-width: 480px) {
+section { padding: 25px 0px; }
+.contact-form { width: 100%; }
+} 
+
+
+        </style>
+        <script type="text/javascript">
+        function scrollto(section){
+            let elemnt = document.getElementById(section);
+            elemnt.scrollIntoView({
+                behavior: 'auto'
+            });
+        }
+        
+        </script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="row">
+                    <img src="resources/img/logo-white.png" alt="Omnifood logo" class="logo">
+                    <ul class="main-nav">
+                        <li><a href="#">Food delivery</a></li>
+                        <li onmousedown="scrollto('how_it_works');"><a href="#">How it works</a></li>
+                        <li onmousedown="scrollto('our_cities');"><a href="#">Our cities</a></li>
+                        <li onmousedown="scrollto('sign_up');"><a href="#">Sign up</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="hero-text-box">
+                <h1>Goodbye junk food.<br> Hello super healthy meals.</h1>
+                <a class="btn btn-full" href="#">I’m hungry</a>
+                <a class="btn btn-ghost" href="#">Show me more</a>
+            </div>
+            
+        </header>
+        
+        <section class="section-features">
+            <div class="row">
+                <h2>Get food fast &mdash; not fast food</h2>
+                <p class="long-copy">
+                    Hello, we’re Omnifood, your new premium food delivery service. We know you’re always busy. No time for cooking. So let us take care of that, we’re really good at it, we promise!
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col span-1-of-4 box">
+                    <i class="ion-ios-infinite-outline icon-big"></i>
+                    <h3>Up to 365 days/year</h3>
+                    <p>
+                        Never cook again! We really mean that. Our subscription plans include up to 365 days/year coverage. You can also choose to order more flexibly if that's your style.
+                    </p>
+                </div>
+                
+                <div class="col span-1-of-4 box">
+                    <i class="ion-ios-stopwatch-outline icon-big"></i>
+                    <h3>Ready in 20 minutes</h3>
+                    <p>
+                        You're only twenty minutes away from your delicious and super healthy meals delivered right to your home. We work with the best chefs in each town to ensure that you're 100% happy.
+                    </p>
+                </div>
+                
+                <div class="col span-1-of-4 box">
+                    <i class="ion-ios-nutrition-outline icon-big"></i>
+                    <h3>100% organic</h3>
+                    <p>
+                       All our vegetables are fresh, organic and local. Animals are raised without added hormones or antibiotics. Good for your health, the environment, and it also tastes better!
+                    </p>
+                </div>
+                
+                <div class="col span-1-of-4 box">
+                    <i class="ion-ios-cart-outline icon-big"></i>
+                    <h3>Order anything</h3>
+                    <p>
+                        We don't limit your creativity, which means you can order whatever you feel like. You can also choose from our menu containing over 100 delicious meals. It's up to you!
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section-meals">
+            <ul class="meals-showcase clearfix">
+                <li>
+                    <figure class="meal-photo">
+                        <img src="resources/img/1.jpg" alt="Korean bibimbap with egg and vegetables">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="meal-photo">
+                        <img src="resources/img/2.jpg" alt="Simple italian pizza with cherry tomatoes">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="meal-photo">
+                        <img src="resources/img/3.jpg" alt="Chicken breast steak with vegetables">
+                    </figure>
+                </li>
+                <li>
+                    <figure  class="meal-photo">
+                        <img src="resources/img/4.jpg" alt="Autumn pumpkin soup">
+                    </figure>
+                </li>
+            </ul>
+            
+            <ul class="meals-showcase clearfix">
+                <li>
+                    <figure class="meal-photo">
+                        <img src="resources/img/5.jpg" alt="Paleo beef steak with vegetables">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="meal-photo">
+                        <img src="resources/img/6.jpg" alt="Healthy baguette with egg and vegetables">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="meal-photo">
+                        <img src="resources/img/7.jpg" alt="Burger with cheddar and bacon">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="meal-photo">
+                        <img src="resources/img/8.jpg" alt="Granola with cherries and strawberries">
+                    </figure>
+                </li>
+            </ul>
+        </section>
+        
+        <section class="section-steps" id="how_it_works">
+            <div class="row">
+                <h2>How it works &mdash; Simple as 1, 2, 3</h2>
+            </div>
+            <div class="row">
+                <div class="col span-1-of-2">
+                    <img src="resources/img/app-iPhone.png" alt="Omnifood app on iPhone" class="app-screen">
+                </div>
+                <div class="col span-1-of-2">
+                    <div class="works-step">
+                        <div>1</div>
+                        <p>Choose the subscription plan that best fits your needs and sign up today.</p>
+                    </div>
+                </div>
+                <div class="col span-1-of-2">
+                    <div class="works-step">
+                        <div>2</div>
+                        <p>Order your delicious meal using our mobile app or website. Or you can even call us!.</p>
+                    </div>
+                </div>
+                <div class="col span-1-of-2">
+                    <div class="works-step">
+                        <div>3</div>
+                        <p>Enjoy your meal after less than 20 minutes. See you the next time!.</p>
+                    </div>
+                    
+                    <a href="#" class="btn-app"><img src="resources/img/download-app-android.png" alt="app store button"></a>
+                    <a href="#" class="btn-app"><img src="resources/img/download-app-android.png" alt="app store button"></a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section-cities" id="our_cities">
+            <div class="row">
+                <h2>We're currently in these cities</h2>
+            </div>
+            <div class="row">
+                <div class="col span-1-of-4 box">
+                    <img src="resources/img/lisbon-3.jpg" alt="lisbon">
+                    <h3>Lisbon</h3>
+                    <div class="city-feature">
+                    <i class="ion-ios-person icon-small"></i>
+                    1600+ happy eaters
+                    </div>
+                    <div class="city-feature">
+                    <i class="ion-ios-star icon-small"></i>
+                    60+ top chefs
+                    </div>
+                    <div class="city-feature">
+                    <i class="ion-social-twitter icon-small"></i>
+                    <a href="#">@omnifood_lx</a>
+                    </div>
+                </div>
+                
+                <div class="col span-1-of-4 box">
+                    <img src="resources/img/san-francisco.jpg" alt="San Francisco">
+                    <h3>San Francisco</h3>
+                    <div class="city-feature">
+                    <i class="ion-ios-person icon-small"></i>
+                    3700+ happy eaters
+                    </div>
+                    <div class="city-feature">
+                    <i class="ion-ios-star icon-small"></i>
+                    160+ top chefs
+                    </div>
+                    <div class="city-feature">
+                    <i class="ion-social-twitter icon-small"></i>
+                    <a href="#">@omnifood_sf</a>
+                    </div>
+                </div>
+                
+                <div class="col span-1-of-4 box">
+                    <img src="resources/img/berlin.jpg" alt="berlin">
+                    <h3>Berlin</h3>
+                    <div class="city-feature">
+                    <i class="ion-ios-person icon-small"></i>
+                    2300+ happy eaters
+                    </div>
+                    <div class="city-feature">
+                    <i class="ion-ios-star icon-small"></i>
+                    110+ top chefs
+                    </div>
+                    <div class="city-feature">
+                    <i class="ion-social-twitter icon-small"></i>
+                    <a href="#">@omnifood_berlin</a>
+                    </div>
+                </div>
+                
+                <div class="col span-1-of-4 box">
+                    <img src="resources/img/london.jpg" alt="london">
+                    <h3>London</h3>
+                    <div class="city-feature">
+                    <i class="ion-ios-person icon-small"></i>
+                    1200+ happy eaters
+                    </div>
+                    <div class="city-feature">
+                    <i class="ion-ios-star icon-small"></i>
+                    50+ top chefs
+                    </div>
+                    <div class="city-feature">
+                    <i class="ion-social-twitter icon-small"></i>
+                    <a href="#">@omnifood_london</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section-testimonials">
+            <div class="row">
+                <h2>Our customers can't live without us</h2>
+            </div>
+            <div class="row">
+                <div class="col span-1-of-3">
+                    <blockquote>
+                        Omnifood is just awesome! I just launched a startup which leaves me with no time for cooking, so Omnifood is a life-saver. Now that I got used to it, I couldn't live without my daily meals!
+                        
+                        <cite><img src="resources/img/customer-1.jpg">Alberto Duncan</cite>
+                    </blockquote>
+                </div>
+                
+                <div class="col span-1-of-3">
+                    <blockquote>
+                        Inexpensive, healthy and great-tasting meals, delivered right to my home. We have lots of food delivery here in Lisbon, but no one comes even close to Omifood. Me and my family are so in love!
+                        
+                        <cite><img src="resources/img/customer-2.jpg">Joana Silva</cite>
+                    </blockquote>
+                </div>
+                
+                <div class="col span-1-of-3">
+                    <blockquote>
+                        I was looking for a quick and easy food delivery service in San Franciso. I tried a lot of them and ended up with Omnifood. Best food delivery service in the Bay Area. Keep up the great work!
+                        
+                        <cite><img src="resources/img/customer-3.jpg">Milton Chapman</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section-plans" id="sign_up">
+            <div class="row">
+                <h2>Start eating healthy today</h2>
+            </div>
+            <div class="row">
+                <div class="col span-1-of-3">
+                    <div class="plan-box">
+                        <h3>Premium</h3>
+                        <div>
+                            <p class="plan-price">399$ <span>/ month</span></p>
+                            <p class="plan-price-meal">That’s only 13.30$ per meal</p>
+                        </div>    
+                        <div>
+                            <ul>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>1 meal every day</li>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>Order 24/7</li>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>Access to newest creations</li>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>Free delivery</li>
+                            </ul>
+                        </div>
+                    <div>
+                        <a href="#" class="btn btn-full">Sign up now</a>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="col span-1-of-3">
+                    <div class="plan-box">
+                        <h3>Pro</h3>
+                        <div>
+                            <p class="plan-price">149$ <span>/ month</span></p>
+                            <p class="plan-price-meal">That’s only 14.90$ per meal</p>
+                        </div>
+                        <div>
+                            <ul>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>1 meal 10days / month</li>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>Order 24/7</li>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>Access to newest creations</li>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>Free delivery</li>
+                            </ul>
+                        </div>
+                    <div>
+                        <a href="#" class="btn btn-ghost">Sign up now</a>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="col span-1-of-3">
+                    <div class="plan-box">
+                        <h3>Starter</h3>
+                        <div>
+                            <p class="plan-price">19$ <span>/ meal</span></p>
+                            <p class="plan-price-meal">&nbsp;</p>
+                        </div>
+                        <div>
+                            <ul>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>1 meal</li>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>Order from 8am to 12pm</li>
+                                <li><i class="ion-ios-close-empty icon-small"></i></li>
+                                <li><i class="ion-ios-checkmark-empty icon-small"></i>Free delivery</li>
+                            </ul>
+                        </div>
+                    <div>
+                        <a href="#" class="btn btn-ghost">Sign up now</a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section-form">
+            <div class="row">
+                <h2>We're happy to hear from you</h2>
+            </div>
+            <div class="row">
+                <form method="post" action="#" class="contact-form">
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="text" name="name" id="name" placeholder="your name" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="email" name="email" id="email" placeholder="your email" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label for="find-us">How did you find us?</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <select name="find-us" id="find-us">
+                                <option value="friends">Friends</option>
+                                <option value="search">Search Engine</option>
+                                <option value="ad">Advertisement</option>
+                                <option value="other">Other way</option>
+                            </select>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col span-1-of-3">
+                            <label>Newsletter</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="checkbox" name="news" id="news" checked>Yes,please
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label>Drop us a line</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <textarea name="message" placeholder="your message"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label>&nbsp;</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input type="submit" value="Send it">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="row">
+                <div class="col span-1-of-2">
+                    <ul class="footer-nav">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">iOS app</a></li>
+                        <li><a href="#">Android app</a></li>
+                    </ul>
+                </div>
+                <div class="col span-1-of-2">
+                    <ul class="social-links">
+                        <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                        <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                        <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <p>
+                    Copyright &copy; 2015 by OmniFoods. All rights reserved.
+                </p>
+            </div>
+        </footer>
+        
+    </body>
+</html>
